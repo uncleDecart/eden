@@ -6,7 +6,7 @@ on:  # yamllint disable-line rule:truthy
 
 jobs:
   integration:
-    runs-on: ubuntu-22.04
+    runs-on: self-hosted
     steps:
       - name: setup
         run: |
