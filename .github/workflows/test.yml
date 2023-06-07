@@ -12,7 +12,7 @@ jobs:
         file_system: ['ext4', 'zfs']
         tpm: [true, false]
     name: Smoke tests
-    runs-on: self-hosted
+    runs-on: buildjet-4vcpu-ubuntu-2204
     steps:
       - name: Get code
         uses: actions/checkout@v3
@@ -26,7 +26,7 @@ jobs:
   networking: 
     name: Networking test suite
     needs: smoke
-    runs-on: self-hosted
+    runs-on: buildjet-4vcpu-ubuntu-2204
     steps:
       - name: Get code
         uses: actions/checkout@v3
@@ -44,7 +44,7 @@ jobs:
         file_system: ['ext4', 'zfs']
     name: Storage test suite
     needs: smoke
-    runs-on: self-hosted
+    runs-on: buildjet-4vcpu-ubuntu-2204
     steps:
       - name: Get code
         uses: actions/checkout@v3
@@ -58,7 +58,7 @@ jobs:
   lpc-loc:
     name: LPC LOC test suite
     needs: smoke
-    runs-on: self-hosted
+    runs-on: buildjet-4vcpu-ubuntu-2204
     steps:
       - name: Get code
         uses: actions/checkout@v3
@@ -76,7 +76,7 @@ jobs:
         file_system: ['ext4', 'zfs']
     name: EVE upgrade test suite
     needs: smoke
-    runs-on: self-hosted
+    runs-on: buildjet-4vcpu-ubuntu-2204
     steps:
       - name: Get code
         uses: actions/checkout@v3
@@ -90,7 +90,7 @@ jobs:
   user-apps:
     name: User apps test suite
     needs: smoke
-    runs-on: self-hosted
+    runs-on: buildjet-4vcpu-ubuntu-2204
     steps:
       - name: Get code
         uses: actions/checkout@v3
