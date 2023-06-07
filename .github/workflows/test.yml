@@ -1,7 +1,8 @@
 ---
 name: Test
-
-on: workflow_dispatch
+on:  # yamllint disable-line rule:truthy
+  pull_request:
+    branches: master
 
 jobs:
   smoke: 
@@ -11,7 +12,7 @@ jobs:
         file_system: ['ext4', 'zfs']
         tpm: [true, false]
     name: Smoke tests
-    runs-on: ubuntu-22.04
+    runs-on: self-hosted
     steps:
       - name: Get code
         uses: actions/checkout@v3
@@ -25,7 +26,7 @@ jobs:
   networking: 
     name: Networking test suite
     needs: smoke
-    runs-on: ubuntu-22.04
+    runs-on: self-hosted
     steps:
       - name: Get code
         uses: actions/checkout@v3
@@ -43,7 +44,7 @@ jobs:
         file_system: ['ext4', 'zfs']
     name: Storage test suite
     needs: smoke
-    runs-on: ubuntu-22.04
+    runs-on: self-hosted
     steps:
       - name: Get code
         uses: actions/checkout@v3
@@ -57,7 +58,7 @@ jobs:
   lpc-loc:
     name: LPC LOC test suite
     needs: smoke
-    runs-on: ubuntu-22.04
+    runs-on: self-hosted
     steps:
       - name: Get code
         uses: actions/checkout@v3
@@ -75,7 +76,7 @@ jobs:
         file_system: ['ext4', 'zfs']
     name: EVE upgrade test suite
     needs: smoke
-    runs-on: ubuntu-22.04
+    runs-on: self-hosted
     steps:
       - name: Get code
         uses: actions/checkout@v3
@@ -89,7 +90,7 @@ jobs:
   user-apps:
     name: User apps test suite
     needs: smoke
-    runs-on: ubuntu-22.04
+    runs-on: self-hosted
     steps:
       - name: Get code
         uses: actions/checkout@v3
