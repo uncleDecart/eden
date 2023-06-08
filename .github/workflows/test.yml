@@ -1,9 +1,6 @@
 ---
 name: Test
-on:  # yamllint disable-line rule:truthy
-  pull_request:
-    branches: master
-
+on: workflow_dispatch 
 jobs:
   smoke: 
     continue-on-error: true

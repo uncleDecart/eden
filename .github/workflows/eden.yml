@@ -7,7 +7,7 @@ on:  # yamllint disable-line rule:truthy
 jobs:
   integration:
     name: Integration test (tpm=${{ matrix.tpm }};${{ matrix.fs }})
-    runs-on: ubuntu-22.04
+    runs-on: buildjet-4vcpu-ubuntu-2204
     strategy:
       fail-fast: false
       matrix:
