@@ -1,62 +1,13 @@
----
-name: Eden
-on:  # yamllint disable-line rule:truthy
-  pull_request:
-    branches: [master]
+name: Collect, count and publish logs
+
+on:
+  workflow_call:
 
 jobs:
-  integration:
-    name: Integration test (tpm=${{ matrix.tpm }};${{ matrix.fs }})
-    runs-on: buildjet-4vcpu-ubuntu-2204
-    strategy:
-      fail-fast: false
-      matrix:
-        tpm: ["true", "false"]
-        fs: ["zfs", "ext4"]
+  gather-logs:
+    name: Process logs and publish them
+    runs-on: self-hosted
     steps:
-      - name: get eden
-        uses: actions/checkout@v3
-      - name: setup go
-        uses: actions/setup-go@v3
-        with:
-          go-version: '1.18'
-      - name: Check
-        run: |
-          for addr in $(ip addr list|sed -En -e 's/.*inet ([0-9.]+).*/\1/p')
-          do
-              if echo "$addr" | grep -q -E "10.11.(12|13).[0-9]+"; then
-                echo "$addr overlaps with test"; exit 1
-              fi
-          done
-          sudo df -h
-          sudo swapoff -a
-          sudo free
-      - name: setup
-        run: |
-          sudo add-apt-repository ppa:stefanberger/swtpm-jammy
-          sudo apt install -y qemu-utils qemu-system-x86 jq swtpm
-      - name: build eden
-        run: |
-          make build-tests
-      - name: configure
-        run: |
-          ./eden config add default
-          ./eden config set default --key=eve.accel --value=false
-          ./eden config set default --key=eve.tpm --value=${{ matrix.tpm }}
-          ./eden config set default --key=eve.cpu --value=2
-      - name: setup-ext4
-        if: matrix.fs == 'ext4'
-        run: ./eden setup -v debug
-      - name: setup-zfs
-        if: matrix.fs == 'zfs'
-        run: |
-          ./eden config set default --key=eve.disks --value=4
-          ./eden config set default --key=eve.disk --value=4096
-          ./eden setup -v debug --grub-options='set_global dom0_extra_args "$dom0_extra_args eve_install_zfs_with_raid_level "'
-      - name: clean-docker
-        run: docker system prune -f -a
-      - name: run
-        run: EDEN_TEST_STOP=n ./eden test ./tests/workflow -v debug
       - name: Collect logs
         if: ${{ always() }}
         run: |
