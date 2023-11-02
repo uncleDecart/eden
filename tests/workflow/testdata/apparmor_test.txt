@@ -1,0 +1,5 @@
+exec -t 5m bash check_apparmor.sh
+
+-- check_apparmor.sh --
+EDEN={{EdenConfig "eden.root"}}/{{EdenConfig "eden.bin-dist"}}/{{EdenConfig "eden.eden-bin"}}
+$EDEN eve ssh "ls /sys/module/apparmor"
