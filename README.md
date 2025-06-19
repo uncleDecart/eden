@@ -3,6 +3,8 @@
 Eden is the simplest way to setup & test [EVE](https://github.com/lf-edge/eve)
 and [Adam](https://github.com/lf-edge/adam).
 
+TEST TEST TEST
+
 Eden is a management harness that provides two layers of management.
 
 * infrastructure: deploy and/or delete nodes running [EVE](https://github.com/lf-edge/eve),
