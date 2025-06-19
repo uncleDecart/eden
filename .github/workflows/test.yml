@@ -47,9 +47,9 @@ jobs:
         run: |
           if [[ "${{ github.event.repository.full_name}}" == "lf-edge/eve" ]] || [[ "${{ github.event.repository.full_name}}" == "lf-edge/eden" ]]; then
             echo "runner=['zededa-ubuntu-latest', 'self-hosted']" >> "$GITHUB_OUTPUT"
-            echo "runner_virt=['ubuntu-latest', 'self-hosted']" >> "$GITHUB_OUTPUT"
+            echo "runner_virt=['zededa-ubuntu-latest', 'self-hosted']" >> "$GITHUB_OUTPUT"
           else
-            echo "runner=['ubuntu-latest', 'self-hosted']" >> "$GITHUB_OUTPUT"
+            echo "runner=['zededa-ubuntu-latest', 'self-hosted']" >> "$GITHUB_OUTPUT"
             echo "runner_virt=['zededa-ubuntu-latest', 'self-hosted']" >> "$GITHUB_OUTPUT"
           fi
 

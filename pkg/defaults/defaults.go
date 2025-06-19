@@ -53,7 +53,8 @@ const (
 	DefaultRegistryPort         = 5050
 
 	//tags, versions, repos
-	DefaultEVETag               = "14.5.0" // DefaultEVETag tag for EVE image
+
+	DefaultEVETag               = "14.5.0-rc1" // DefaultEVETag tag for EVE image
 	DefaultAdamTag              = "0.0.57"
 	DefaultRedisTag             = "7"
 	DefaultRegistryTag          = "2.7"
@@ -109,6 +110,7 @@ const (
 	DefaultRegistryContainerName = "eden_registry"
 	DefaultEServerContainerName  = "eden_eserver"
 	DefaultDockerNetworkName     = "eden_network"
+	DefaultDockerNetIPv6Subnet   = "fd11:778b:03dd:1111::/64"
 	DefaultLogLevelToPrint       = log.InfoLevel
 	DefaultX509Country           = "RU"
 	DefaultX509Company           = "lf-edge"
@@ -201,6 +203,7 @@ const (
 	DefaultSdnMgmtPort   = 6666
 	DefaultSdnCpus       = 2
 	DefaultSdnMemory     = 2048
+	DefaultSdnIPv6Subnet = "fd59:9c46:bc86:2222::/64"
 )
 
 var (
