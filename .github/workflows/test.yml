@@ -64,8 +64,24 @@ jobs:
     needs: determine-runner
     runs-on: ${{ fromJSON(needs.determine-runner.outputs.runner) }}
     steps:
-      - name: Dockerhub Login
-        if: ${{ github.event.repository.full_name }} == 'lf-edge/eve'
+      - name: Check for DockerHub credentials
+        id: check-dockerhub-creds
+        run: |
+          if [ -n "${{ secrets.DOCKERHUB_PULL_USER }}" ] && [ -n "${{ secrets.DOCKERHUB_PULL_TOKEN }}" ]; then
+            echo "creds_exist=true" >> $GITHUB_OUTPUT
+          else
+            echo "creds_exist=false" >> $GITHUB_OUTPUT
+          fi
+      - name: Check for DockerHub credentials
+        id: check-dockerhub-creds
+        run: |
+          if [ -n "${{ secrets.DOCKERHUB_PULL_USER }}" ] && [ -n "${{ secrets.DOCKERHUB_PULL_TOKEN }}" ]; then
+            echo "creds_exist=true" >> $GITHUB_OUTPUT
+          else
+            echo "creds_exist=false" >> $GITHUB_OUTPUT
+          fi
+      - name: Login to DockerHub
+        if: steps.check-dockerhub-creds.outputs.creds_exist == 'true'
         uses: docker/login-action@v3
         with:
           username: ${{ secrets.DOCKERHUB_PULL_USER }}
@@ -97,8 +113,16 @@ jobs:
     needs: [determine-runner]
     runs-on: ${{ fromJSON(needs.determine-runner.outputs.runner) }}
     steps:
-      - name: Dockerhub Login
-        if: ${{ github.event.repository.full_name }} == 'lf-edge/eve'
+      - name: Check for DockerHub credentials
+        id: check-dockerhub-creds
+        run: |
+          if [ -n "${{ secrets.DOCKERHUB_PULL_USER }}" ] && [ -n "${{ secrets.DOCKERHUB_PULL_TOKEN }}" ]; then
+            echo "creds_exist=true" >> $GITHUB_OUTPUT
+          else
+            echo "creds_exist=false" >> $GITHUB_OUTPUT
+          fi
+      - name: Login to DockerHub
+        if: steps.check-dockerhub-creds.outputs.creds_exist == 'true'
         uses: docker/login-action@v3
         with:
           username: ${{ secrets.DOCKERHUB_PULL_USER }}
@@ -131,8 +155,16 @@ jobs:
     needs: [determine-runner]
     runs-on: ${{ fromJSON(needs.determine-runner.outputs.runner) }}
     steps:
-      - name: Dockerhub Login
-        if: ${{ github.event.repository.full_name }} == 'lf-edge/eve'
+      - name: Check for DockerHub credentials
+        id: check-dockerhub-creds
+        run: |
+          if [ -n "${{ secrets.DOCKERHUB_PULL_USER }}" ] && [ -n "${{ secrets.DOCKERHUB_PULL_TOKEN }}" ]; then
+            echo "creds_exist=true" >> $GITHUB_OUTPUT
+          else
+            echo "creds_exist=false" >> $GITHUB_OUTPUT
+          fi
+      - name: Login to DockerHub
+        if: steps.check-dockerhub-creds.outputs.creds_exist == 'true'
         uses: docker/login-action@v3
         with:
           username: ${{ secrets.DOCKERHUB_PULL_USER }}
@@ -161,8 +193,16 @@ jobs:
     needs: [determine-runner]
     runs-on: ${{ fromJSON(needs.determine-runner.outputs.runner) }}
     steps:
-      - name: Dockerhub Login
-        if: ${{ github.event.repository.full_name }} == 'lf-edge/eve'
+      - name: Check for DockerHub credentials
+        id: check-dockerhub-creds
+        run: |
+          if [ -n "${{ secrets.DOCKERHUB_PULL_USER }}" ] && [ -n "${{ secrets.DOCKERHUB_PULL_TOKEN }}" ]; then
+            echo "creds_exist=true" >> $GITHUB_OUTPUT
+          else
+            echo "creds_exist=false" >> $GITHUB_OUTPUT
+          fi
+      - name: Login to DockerHub
+        if: steps.check-dockerhub-creds.outputs.creds_exist == 'true'
         uses: docker/login-action@v3
         with:
           username: ${{ secrets.DOCKERHUB_PULL_USER }}
@@ -195,8 +235,16 @@ jobs:
     needs: [determine-runner]
     runs-on: ${{ fromJSON(needs.determine-runner.outputs.runner) }}
     steps:
-      - name: Dockerhub Login
-        if: ${{ github.event.repository.full_name }} == 'lf-edge/eve'
+      - name: Check for DockerHub credentials
+        id: check-dockerhub-creds
+        run: |
+          if [ -n "${{ secrets.DOCKERHUB_PULL_USER }}" ] && [ -n "${{ secrets.DOCKERHUB_PULL_TOKEN }}" ]; then
+            echo "creds_exist=true" >> $GITHUB_OUTPUT
+          else
+            echo "creds_exist=false" >> $GITHUB_OUTPUT
+          fi
+      - name: Login to DockerHub
+        if: steps.check-dockerhub-creds.outputs.creds_exist == 'true'
         uses: docker/login-action@v3
         with:
           username: ${{ secrets.DOCKERHUB_PULL_USER }}
@@ -225,8 +273,16 @@ jobs:
     needs: [determine-runner]
     runs-on: ${{ fromJSON(needs.determine-runner.outputs.runner) }}
     steps:
-      - name: Dockerhub Login
-        if: ${{ github.event.repository.full_name }} == 'lf-edge/eve'
+      - name: Check for DockerHub credentials
+        id: check-dockerhub-creds
+        run: |
+          if [ -n "${{ secrets.DOCKERHUB_PULL_USER }}" ] && [ -n "${{ secrets.DOCKERHUB_PULL_TOKEN }}" ]; then
+            echo "creds_exist=true" >> $GITHUB_OUTPUT
+          else
+            echo "creds_exist=false" >> $GITHUB_OUTPUT
+          fi
+      - name: Login to DockerHub
+        if: steps.check-dockerhub-creds.outputs.creds_exist == 'true'
         uses: docker/login-action@v3
         with:
           username: ${{ secrets.DOCKERHUB_PULL_USER }}
@@ -255,8 +311,16 @@ jobs:
     needs: [determine-runner]
     runs-on: ${{ fromJSON(needs.determine-runner.outputs.runner_virt) }}
     steps:
-      - name: Dockerhub Login
-        if: ${{ github.event.repository.full_name }} == 'lf-edge/eve'
+      - name: Check for DockerHub credentials
+        id: check-dockerhub-creds
+        run: |
+          if [ -n "${{ secrets.DOCKERHUB_PULL_USER }}" ] && [ -n "${{ secrets.DOCKERHUB_PULL_TOKEN }}" ]; then
+            echo "creds_exist=true" >> $GITHUB_OUTPUT
+          else
+            echo "creds_exist=false" >> $GITHUB_OUTPUT
+          fi
+      - name: Login to DockerHub
+        if: steps.check-dockerhub-creds.outputs.creds_exist == 'true'
         uses: docker/login-action@v3
         with:
           username: ${{ secrets.DOCKERHUB_PULL_USER }}
@@ -293,8 +357,24 @@ jobs:
     needs: [determine-runner]
     runs-on: ${{ fromJSON(needs.determine-runner.outputs.runner) }}
     steps:
-      - name: Dockerhub Login
-        if: ${{ github.event.repository.full_name }} == 'lf-edge/eve'
+      - name: Check for DockerHub credentials
+        id: check-dockerhub-creds
+        run: |
+          if [ -n "${{ secrets.DOCKERHUB_PULL_USER }}" ] && [ -n "${{ secrets.DOCKERHUB_PULL_TOKEN }}" ]; then
+            echo "creds_exist=true" >> $GITHUB_OUTPUT
+          else
+            echo "creds_exist=false" >> $GITHUB_OUTPUT
+          fi
+      - name: Check for DockerHub credentials
+        id: check-dockerhub-creds
+        run: |
+          if [ -n "${{ secrets.DOCKERHUB_PULL_USER }}" ] && [ -n "${{ secrets.DOCKERHUB_PULL_TOKEN }}" ]; then
+            echo "creds_exist=true" >> $GITHUB_OUTPUT
+          else
+            echo "creds_exist=false" >> $GITHUB_OUTPUT
+          fi
+      - name: Login to DockerHub
+        if: steps.check-dockerhub-creds.outputs.creds_exist == 'true'
         uses: docker/login-action@v3
         with:
           username: ${{ secrets.DOCKERHUB_PULL_USER }}
