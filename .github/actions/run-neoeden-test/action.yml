@@ -61,7 +61,7 @@ runs:
         artifact_run_id: ${{ inputs.artifact_run_id }}
         require_virtualization: ${{ inputs.require_virtualization }}
     - name: Run kubevirt tests
-      run: cd tests/sec && go test
+      run: cd go test
       shell: bash
       working-directory: "./eden/tests/kubevirt"
     - name: Run security tests
